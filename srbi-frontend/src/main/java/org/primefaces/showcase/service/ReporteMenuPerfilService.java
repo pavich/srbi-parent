@@ -88,6 +88,5 @@ public class ReporteMenuPerfilService {
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
         System.out.println(" findByIdMenuPerfil servicio  fin ");
         return invocationBuilder.get(new GenericType<List<ReporteMenuPerfil>>() {});
-
     }
 }

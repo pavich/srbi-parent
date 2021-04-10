@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IReporteMenuPerfilDao extends JpaRepository<ReporteMenuPerfil, Long> {
 
-    @Query("select rmp from reporte_menu_perfil rmp where rmp = :idMenuPerfil")
+    @Query("select rmp from reporte_menu_perfil rmp where rmp.idMenuPerfil = :idMenuPerfil")
     List<ReporteMenuPerfil> findByIdMenuPerfil(@Param("idMenuPerfil") Long idMenuPerfil);
 
 }

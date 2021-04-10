@@ -84,9 +84,7 @@ public class UsuarioPerfilController {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Usuario Not Found", exc);
         }
-
     }
-    // read - all
 
     @GetMapping
     public List<UsuarioPerfil> findAll() {

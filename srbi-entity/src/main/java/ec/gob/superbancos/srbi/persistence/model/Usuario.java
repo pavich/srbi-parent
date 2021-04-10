@@ -1,11 +1,13 @@
 package ec.gob.superbancos.srbi.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import ec.gob.superbancos.srbi.persistence.deser.MultiDateDeserializer;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity(name = "srbi_usuario")
@@ -18,33 +20,32 @@ public class Usuario implements Serializable {
     private String login;
     @Column(name = "id_usuario_creacion")
     private long idUsuarioCreacion;
-    @JsonDeserialize(using = MultiDateDeserializer.class)
+    //@JsonDeserialize(using = MultiDateDeserializer.class)
     @Column(name = "fecha_modificacion")
-    private Date fechaModificacion;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Timestamp fechaModificacion;
     private long intento;
     private String ip;
     private String contrasenia;
     @Column(name = "id_usuario_modificacion")
     private long idUsuarioModificacion;
-    @JsonDeserialize(using = MultiDateDeserializer.class)
+    //@JsonDeserialize(using = MultiDateDeserializer.class)
     @Column(name = "fecha_creacion")
-    private Date fechaCreacion;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Timestamp fechaCreacion;
     private long estado;
     @Column(name = "id_departamento")
     private long idDepartamento;
     @Column(name = "correo_empresarial")
     private String correoEmpresarial;
 
-/*
-     @OneToMany(cascade= CascadeType.ALL)
-     @JoinColumn(name="id_usuario")
-     private List<UsuarioPerfil> usuarioPerfilList;
-*/
     public Usuario() {
 
     }
 
-    public Usuario(long id, String login, long idUsuarioCreacion, Date fechaModificacion, long intento, String ip, String contrasenia, long idUsuarioModificacion, Date fechaCreacion, long estado, long idDepartamento, String correoEmpresarial) {
+    public Usuario(long id, String login, long idUsuarioCreacion, Timestamp fechaModificacion, long intento, String ip, String contrasenia, long idUsuarioModificacion, Timestamp fechaCreacion, long estado, long idDepartamento, String correoEmpresarial) {
+        //Timestamp tsFM=new Timestamp(fechaModificacion.getTime());
+        //Timestamp tsFC=new Timestamp(fechaCreacion.getTime());
         this.id = id;
         this.login = login;
         this.idUsuarioCreacion = idUsuarioCreacion;
@@ -83,11 +84,12 @@ public class Usuario implements Serializable {
         this.idUsuarioCreacion = idUsuarioCreacion;
     }
 
-    public Date getFechaModificacion() {
+    public Timestamp getFechaModificacion() {
         return fechaModificacion;
     }
 
-    public void setFechaModificacion(Date fechaModificacion) {
+    public void setFechaModificacion(Timestamp fechaModificacion) {
+        //Timestamp tsFM=new Timestamp(fechaModificacion.getTime());
         this.fechaModificacion = fechaModificacion;
     }
 
@@ -123,11 +125,12 @@ public class Usuario implements Serializable {
         this.idUsuarioModificacion = idUsuarioModificacion;
     }
 
-    public Date getFechaCreacion() {
+    public Timestamp getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(Timestamp fechaCreacion) {
+        //Timestamp tsFC=new Timestamp(fechaModificacion.getTime());
         this.fechaCreacion = fechaCreacion;
     }
 

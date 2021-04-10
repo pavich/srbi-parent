@@ -19,11 +19,6 @@ public class UsuarioPerfil implements Serializable {
     private long idPerfil;
     @Column(name = "id_usuario")
     private long idUsuario;
-
-  /*  @ManyToOne
-    @JoinColumn(name="id_usuario")
-    private Usuario usuario;
-*/
     private long estado;
     @Column(name = "id_usuario_creacion")
     private long idUsuarioCreacion;

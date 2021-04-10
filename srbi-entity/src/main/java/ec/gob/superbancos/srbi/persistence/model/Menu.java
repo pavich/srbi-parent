@@ -24,14 +24,12 @@ public class Menu implements Serializable {
     private Date fechaCreacion;
     @Column(name = "id_usuario_modificacion")
     private long idUsuarioModificacion;
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSSX")
+    @JsonDeserialize(using = MultiDateDeserializer.class)
     @Column(name = "fecha_modificacion")
     private Date fechaModificacion;
     private long estado;
-
-    @ManyToOne
-    @JoinColumn(name = "id_menu_padre")
-    private Menu submenu;
+    @Column(name = "id_menu_padre")
+    private Long idMenuPadre;
 
     public long getId() {
         return id;
@@ -96,15 +94,7 @@ public class Menu implements Serializable {
     public void setEstado(long estado) {
         this.estado = estado;
     }
-/*
-    public Long getIdMenuPadre() {
-        return idMenuPadre;
-    }
 
-    public void setIdMenuPadre(Long idMenuPadre) {
-        this.idMenuPadre = idMenuPadre;
-    }
-*/
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -127,11 +117,11 @@ public class Menu implements Serializable {
         } else return id == other.id;
     }
 
-    public Menu getSubmenu() {
-        return submenu;
+    public Long getIdMenuPadre() {
+        return idMenuPadre;
     }
 
-    public void setSubmenu(Menu submenu) {
-        this.submenu = submenu;
+    public void setIdMenuPadre(Long idMenuPadre) {
+        this.idMenuPadre = idMenuPadre;
     }
 }

@@ -45,8 +45,9 @@ public class LoginView implements Serializable {
     @Inject
     private LoginService loginService;
 
-    @Inject
-    private MenuPerfilService menuPerfilService;
+    /*@Inject
+    private MenuPerfilService menuPerfilService;*/
+
     @Inject
     private UsuarioPerfilService usuarioPerfilService;
 
@@ -95,50 +96,6 @@ public class LoginView implements Serializable {
         return "login?faces-redirect=true";
     }
 
-    private void loadAuthorizedModules() {
- /*
-        if (gnrUsuaMods == null) {
-            GnrUsuaModFacadeREST gnrUsuaModFacadeREST = new GnrUsuaModFacadeREST();
-            String gnrUsuaModsString = gnrUsuaModFacadeREST.findByNombreUsuario(String.class, userName.toUpperCase());
-            gnrUsuaMods = gson.fromJson(gnrUsuaModsString,
-                    new TypeToken<List<GnrUsuaMod>>() {
-                    }.getType());
-
-            checkPermission();
-        }
-  */
-    }
-
-    private void checkPermission() {
-    /*
-        LOGGER.log(Level.INFO, "gnrUsuaMods size: {0}", gnrUsuaMods.size());
-
-        for (GnrUsuaMod gnrUsuaMod : gnrUsuaMods) {
-            switch (gnrUsuaMod.getGnrUsuaModPK().getCodModulo()) {
-                case PEDIDOS_Y_DESPACHOS:
-                    pedidoVisible = true;
-                    LOGGER.log(Level.INFO, "pedidoVisible: {0}", pedidoVisible);
-                    visitaVisible = true;
-                    LOGGER.log(Level.INFO, "visitaVisible: {0}", visitaVisible);
-                    break;
-                case CUENTAS_POR_COBRAR:
-                    cobroVisible = true;
-                    LOGGER.log(Level.INFO, "cobroVisible: {0}", cobroVisible);
-                    break;
-                case CAJAS:
-                    cajasVisible = true;
-                    LOGGER.log(Level.INFO, "cajasVisible: {0}", cajasVisible);
-                    break;
-                case NOMINA:
-                    nominaVisible = true;
-                    LOGGER.log(Level.INFO, "nominaVisible: {0}", nominaVisible);
-                    break;
-                default:
-                    break;
-            }
-        }
-     */
-    }
 
     public void validarLDAP() {
         int idPerfil=0;
@@ -149,6 +106,8 @@ public class LoginView implements Serializable {
         usuario.setLogin(userName);
         usuario.setContrasenia(password);
         System.out.println(usuario.getLogin());
+        System.out.println("eca creacion "+usuario.getFechaCreacion());
+        System.out.println("eca modiicacion "+usuario.getFechaModificacion());
         usuarioValidado = loginService.validarCredencial(usuario);
         System.out.println("Id validado: "+ usuarioValidado.getId());
         System.out.println(usuarioValidado.getLogin());
@@ -196,4 +155,10 @@ public class LoginView implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public void exitSession()
+    {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    }
+
 }

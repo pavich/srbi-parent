@@ -65,6 +65,8 @@ public class LoginController {
                 //return true;
             }
         System.out.println("id" + foo.getId());
+        System.out.println("eca creacion "+foo.getFechaCreacion());
+        System.out.println("eca modiicacion "+foo.getFechaModificacion());
         //return false;
         return foo;
     }

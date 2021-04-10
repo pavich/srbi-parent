@@ -3,6 +3,7 @@ package ec.gob.superbancos.srbi.web.controller;
 import com.google.common.base.Preconditions;
 import ec.gob.superbancos.srbi.persistence.model.MenuPerfil;
 import ec.gob.superbancos.srbi.persistence.model.ReporteMenuPerfil;
+import ec.gob.superbancos.srbi.persistence.model.UsuarioPerfil;
 import ec.gob.superbancos.srbi.persistence.service.IReporteMenuPerfilService;
 import ec.gob.superbancos.srbi.web.exception.MyResourceNotFoundException;
 import ec.gob.superbancos.srbi.web.hateoas.event.PaginatedResultsRetrievedEvent;
@@ -149,6 +150,20 @@ public class ReporteMenuPerfilController {
         reportl=service.findByIdMenuPerfil(idMenuPerfil);
         System.out.println(" tamaño de lista " + reportl.size());
         return reportl;
-
     }
+/*
+    @GetMapping(value = "/usuario/{IdUsuario}")
+    public UsuarioPerfil findByIdUsuario(@PathVariable("IdUsuario") final Long IdUsuario, final HttpServletResponse response) {
+        try {
+            final UsuarioPerfil resourceById = RestPreconditions.checkFound(service.findByIdUsu (IdUsuario));
+
+            eventPublisher.publishEvent(new SingleResourceRetrievedEvent(this, response));
+            return resourceById;
+        }
+        catch (MyResourceNotFoundException exc) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Usuario Not Found", exc);
+        }
+    }
+ */
 }

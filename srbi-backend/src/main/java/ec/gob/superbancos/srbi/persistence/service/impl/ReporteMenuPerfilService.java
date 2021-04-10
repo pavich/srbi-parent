@@ -56,6 +56,6 @@ public class ReporteMenuPerfilService extends AbstractService<ReporteMenuPerfil>
         reportl=dao.findByIdMenuPerfil (idMenuPerfil);
         System.out.println(" tamaño de lista " + reportl.size());
         return reportl;
-
     }
+
 }

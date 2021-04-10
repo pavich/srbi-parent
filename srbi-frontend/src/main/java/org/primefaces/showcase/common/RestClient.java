@@ -55,6 +55,7 @@ public class RestClient implements Serializable {
         }
         /*Devuelve la recepcion del path de llamada, ejemplo
         http://localhost:8080/Rest-JSF-Web-PrimeFaces/webresources/Producto*/
+        System.out.println("service url " + SERVICE_BASE_URI + relativeUrl);
         return client.target(SERVICE_BASE_URI + relativeUrl);
     }
 

@@ -18,7 +18,9 @@ public class MultiDateDeserializer extends StdDeserializer<Date> {
 
     private final String[] DATE_FORMATS = new String[] {
             "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-            "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            "yyyy-MM-dd'T'HH:mm:ss'Z'",
+            "yyyy-MM-dd",
+            "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
     };
 
     public MultiDateDeserializer() {

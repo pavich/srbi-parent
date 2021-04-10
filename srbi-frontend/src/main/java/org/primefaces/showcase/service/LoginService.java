@@ -31,7 +31,9 @@ public class LoginService {
         System.out.println(usuario.getLogin());
         WebTarget webTarget = restClient.getWebTarget("logins/validarLDAP/");
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
-        return invocationBuilder.post(Entity.entity(usuario, MediaType.APPLICATION_JSON), Usuario.class);
+        clientResponse=invocationBuilder.post(Entity.entity(usuario, MediaType.APPLICATION_JSON), Usuario.class);
+        System.out.println("dentro validarCredencial " +clientResponse.getLogin());
+        return clientResponse;
     }
 
 

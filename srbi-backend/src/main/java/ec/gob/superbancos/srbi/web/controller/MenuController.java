@@ -39,22 +39,6 @@ public class MenuController {
         super();
     }
 
-    // API
-
-    // Note: the global filter overrides the ETag value we set here. We can still analyze its behaviour in the Integration Test.
-    /*@GetMapping(value = "/{id}/custom-etag")
-    public ResponseEntity<Usuario> findByIdWithCustomEtag(@PathVariable("id") final Long id,
-                                                          final HttpServletResponse response) {
-        final Usuario usuario = RestPreconditions.checkFound(service.findById(id));
-
-        eventPublisher.publishEvent(new SingleResourceRetrievedEvent(this, response));
-        return ResponseEntity.ok()
-                .eTag(Long.toString(usuario.getVersion()))
-                .body(usuario);
-    }*/
-
-    // read - one
-
     @GetMapping(value = "/{id}")
     public Menu findById(@PathVariable("id") final Long id, final HttpServletResponse response) {
         try {
@@ -134,9 +118,4 @@ public class MenuController {
         service.deleteById(id);
     }
 
-    /*@ExceptionHandler({ CustomException1.class, CustomException2.class })
-    public void handleException(final Exception ex) {
-        final String error = "Application specific error handling";
-        logger.error(error, ex);
-    }*/
 }

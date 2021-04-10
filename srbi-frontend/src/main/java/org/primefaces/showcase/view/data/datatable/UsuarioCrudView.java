@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.BadRequestException;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
@@ -59,8 +60,10 @@ public class UsuarioCrudView implements Serializable {
     }
 
     public void save() {
+        Timestamp ts=new Timestamp(Calendar.getInstance().getTimeInMillis());
         if (this.selectedUsuario.getId() <= 0) {
-            this.selectedUsuario.setFechaCreacion(Calendar.getInstance().getTime());
+
+            this.selectedUsuario.setFechaCreacion(ts);
             this.selectedUsuario.setIp("");
             this.selectedUsuario.setContrasenia("");
             Usuario usuario = this.usuarioService.save(this.selectedUsuario);
@@ -70,7 +73,7 @@ public class UsuarioCrudView implements Serializable {
             }
         }
         else {
-            this.selectedUsuario.setFechaModificacion(Calendar.getInstance().getTime());
+            this.selectedUsuario.setFechaModificacion(ts);
             try {
                 this.usuarioService.save(this.selectedUsuario);
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuario Actualizado"));
